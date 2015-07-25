@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">Dictionary</string>
+
+    <string name="app_name">Словарь</string>
+    <string name="action_about">О программе</string>
+    <string name="title_activity_about">О программе</string>
+    <string name="action_share">Поделиться</string>
+    <string name="about_app">
+    Программа "Словарь"\nРазработана Пономарёвым А.А.\nсогласно тестовому ТЗ для компании Artjoker\n
+    </string>
+    <string name="title_activity_translation">TranslationActivity</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
 </resources>

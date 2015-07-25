@@ -1,14 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="ua.my.dictionary.MainActivity">
-
-
+    tools:context="ua.my.dictionary.TranslationActivity">
     <item
-        android:id="@+id/btn_about"
-        android:icon="@drawable/ic_action_help"
+        android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="@string/action_about"
-        app:showAsAction="always" />
-
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
 </menu>
