@@ -1,9 +1,10 @@
 package ua.my.dictionary;
 
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class TranslationActivity extends ActionBarActivity {
@@ -12,28 +13,30 @@ public class TranslationActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translation);
-    }
+        Uri uri = Uri.withAppendedPath(DictionaryContentProvider.CONTENT_URI, getIntent().getStringExtra("id"));
+
+        Cursor cursor = managedQuery(uri, null, null, null, null);
+
+        if (cursor == null) {
+            finish();
+        } else {
+            cursor.moveToFirst();
+
+            TextView tvTranslate = (TextView) findViewById(R.id.tvTranslate);
+
+            int key_word_index = cursor.getColumnIndexOrThrow(DictionaryDB.KEY_RU);
+            int translated_word_index = cursor.getColumnIndexOrThrow(DictionaryDB.KEY_EN);
+
+            if (getIntent().getStringExtra("language").equals("en")) {
+                key_word_index = cursor.getColumnIndexOrThrow(DictionaryDB.KEY_EN);
+                translated_word_index = cursor.getColumnIndexOrThrow(DictionaryDB.KEY_RU);
+            }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_translation, menu);
-        return true;
-    }
+            tvTranslate.setText(cursor.getString(key_word_index) + " - " + cursor.getString(translated_word_index));
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
+
 }

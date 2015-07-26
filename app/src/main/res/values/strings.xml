@@ -7,9 +7,16 @@
     <string name="about_app">
     Программа "Словарь"\nРазработана Пономарёвым А.А.\nсогласно тестовому ТЗ для компании Artjoker\n
     </string>
-    <string name="title_activity_translation">TranslationActivity</string>
+    <string name="title_activity_translation">Перевод</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <plurals name="search_results">
+        <item quantity="one">%1$d результат для \"%2$s\": </item>
+        <item quantity="other">%1$d результат для \"%2$s\": </item>
+    </plurals>
+    <string name="action_settings">Настройки</string>
+    <string name="search_text">Введите текст для поиска</string>
+    <string name="no_results">Нет результата для  \"%s\"</string>
+    <string name="search_hint">Поиск в словаре</string>
+    <string name="translate">Перевод</string>
 
 </resources>
