@@ -15,6 +15,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".AboutActivity"
@@ -32,6 +33,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.my.dictionary.MainActivity" />
         </activity>
+
+        <provider
+            android:name=".DictionaryContentProvider"
+            android:authorities="ua.my.dictionary.DictionaryContentProvider" />
+
     </application>
 
 </manifest>

@@ -1,0 +1,10 @@
+map - карта
+car - машина
+word - слово
+world - мир
+price - цена
+age - возраст
+cat - кошка
+dog - собака
+mouse - мышка
+fly - летать
