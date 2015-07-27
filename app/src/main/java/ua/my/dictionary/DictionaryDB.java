@@ -1,6 +1,7 @@
 package ua.my.dictionary;
 
 import android.app.SearchManager;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.Resources;
@@ -8,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.net.Uri;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
@@ -27,9 +29,10 @@ public class DictionaryDB {
     private static final String DB_TAG = "DictionaryDB";
     private static final String DB_NAME = "DictionaryDB";
     private static final String FTS_VIRTUAL_TABLE = "FTS_DB";
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
     private static final HashMap<String, String> columnMap = buildColumnMap();
     private final DictionaryDBOpenHelper dbOpenHelper;
+    SQLiteDatabase db;
 
 
     public DictionaryDB(Context context) {
@@ -68,6 +71,17 @@ public class DictionaryDB {
 
     }
 
+
+
+    public Uri insertWord( ContentValues values){
+
+        db = dbOpenHelper.getWritableDatabase();
+        long rowID= db.insert(FTS_VIRTUAL_TABLE, null, values);
+        Uri resultUri = ContentUris.withAppendedId(DictionaryContentProvider.CONTENT_URI, rowID);
+
+        return resultUri;
+
+    }
 
     private Cursor query(String selection, String[] selectionArgs, String[] columns) {
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();

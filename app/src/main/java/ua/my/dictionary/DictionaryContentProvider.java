@@ -15,20 +15,24 @@ import android.provider.BaseColumns;
 
 public class DictionaryContentProvider extends ContentProvider {
 
+    public static String AUTHORITY = "ua.my.dictionary.DictionaryContentProvider";
+    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/DictionaryDB");
+
     public static final String WORDS_MIME_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE +
             "/vnd.my.dictionary";
     public static final String WORD_TRANSLATE_MIME_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE +
             "/vnd.my.dictionary";
+
     private static final int SEARCH_WORDS = 0;
     private static final int GET_WORD = 1;
     private static final int SEARCH_SUGGEST = 2;
     private static final int REFRESH_SHORTCUT = 3;
     private static final UriMatcher sURIMatcher = buildUriMatcher();
-    public static String AUTHORITY = "ua.my.dictionary.DictionaryContentProvider";
-    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/DictionaryDB");
+
     private DictionaryDB dictionaryDB;
 
     private static UriMatcher buildUriMatcher() {
+
         UriMatcher matcher = new UriMatcher(UriMatcher.NO_MATCH);
 
         matcher.addURI(AUTHORITY, "DictionaryDB", SEARCH_WORDS);
@@ -178,7 +182,10 @@ public class DictionaryContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        throw new UnsupportedOperationException();
+
+        Uri result = dictionaryDB.insertWord(values);
+        getContext().getContentResolver().notifyChange(result, null);
+        return result;
     }
 
     @Override
