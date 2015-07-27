@@ -3,11 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ua.my.dictionary.MainActivity">
 
+    <item
+    android:id="@+id/miActionProgress"
+    android:title="Loading..."
+    android:visible="false"
+    android:orderInCategory="99"
+    app:showAsAction="ifRoom"
+    app:actionLayout="@layout/action_view_progress" />
 
     <item
         android:id="@+id/btn_about"
         android:icon="@drawable/ic_action_help"
-        android:orderInCategory="100"
+        android:orderInCategory="99"
         android:title="@string/action_about"
         app:showAsAction="always" />
 

@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.TextView;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
 
 public class TranslationActivity extends ActionBarActivity {
-
+    final static String FILENAME="LastWords";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +38,25 @@ public class TranslationActivity extends ActionBarActivity {
             }
 
 
+            try {
+
+                BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(
+                        openFileOutput(FILENAME, MODE_APPEND)));
+
+                bw.write(cursor.getString(key_word_index)+" ");
+
+                bw.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             tvTranslate.setText(cursor.getString(key_word_index) + " - " + cursor.getString(translated_word_index));
 
         }
     }
+
 
 
 }

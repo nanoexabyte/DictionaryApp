@@ -9,13 +9,10 @@
     </string>
     <string name="title_activity_translation">Перевод</string>
 
-    <plurals name="search_results">
-        <item quantity="one">%1$d результат для \"%2$s\": </item>
-        <item quantity="other">%1$d результат для \"%2$s\": </item>
-    </plurals>
+
     <string name="action_settings">Настройки</string>
     <string name="search_text">Введите текст для поиска</string>
-    <string name="no_results">Нет результата для  \"%s\"</string>
+
     <string name="search_hint">Поиск в словаре</string>
     <string name="translate">Перевод</string>
 
